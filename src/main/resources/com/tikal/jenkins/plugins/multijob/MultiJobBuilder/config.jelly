@@ -1,0 +1,49 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+		<f:entry title="Phase name" field="phaseName"
+                help="/plugin/jenkins-multijob-plugin/help-phaseName.html">
+			<f:textbox name="phaseName" value="${instance.phaseName}" />
+		</f:entry>
+		<f:entry title="Phase jobs" field="phaseJobs">
+    		<f:repeatable field="phaseJobs" noAddButton="true" minimum="1">
+    			<table width="100%">
+    			<f:entry title="Job name" field="jobName"
+                         help="/plugin/jenkins-multijob-plugin/help-jobName.html">
+      				<f:textbox />
+    			</f:entry>
+    		
+				<f:advanced>
+				    
+				    <f:block>
+    					<f:hetero-list name="configs" hasHeader="true"
+                   		descriptors="${descriptor.getBuilderConfigDescriptors()}"
+                   		oneEach="true"
+                   		items="${instance.configs}"
+                   		addCaption="${%Add Parameters}"	/>
+    				</f:block>
+					<f:entry title="Current job parameters" field="currParams"
+						help="/plugin/jenkins-multijob-plugin/help-currParams.html">
+  						<f:checkbox name="currParams" checked="${instance.currParams}" default="true"/>
+  					</f:entry>
+  					<f:entry title="Exposed SCM" field="exposedSCM"
+						help="/plugin/jenkins-multijob-plugin/help-repository.html">
+  						<f:checkbox name="exposedSCM" checked="${instance.exposedSCM}" default="true"/>
+  					</f:entry>
+				</f:advanced>
+		        <f:entry>
+		          <div align="right">
+		            <input type="button" value="${%Add jobs...}" class="repeatable-add show-if-last" />
+		            <input type="button" value="${%Delete}" class="repeatable-delete show-if-not-only" style="margin-left: 1em;" />
+		          </div>
+		        </f:entry>
+		        </table>
+    		</f:repeatable>
+  		</f:entry>
+  		<f:entry title="Mark phase as successful&lt;br&gt; when phase jobs' statuses are:"
+			field="continuationCondition" help="/plugin/jenkins-multijob-plugin/help-continuationCondition.html">
+			<f:enum field="continuationCondition">
+				${it.getLabel()}
+			</f:enum>
+		</f:entry>
+  		
+</j:jelly>
