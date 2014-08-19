@@ -2,25 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.jenkins-ci.plugins</groupId>
-		<artifactId>plugin</artifactId>
-		<version>1.465</version>
-	</parent>
+		<groupId>org.eclipse.hudson.plugins</groupId>
+		<artifactId>hudson-plugin-parent</artifactId>
+		<version>3.0.0</version>
+	<relativePath/>
+  </parent>
 	<!-- parent> <groupId>org.jvnet.hudson.plugins</groupId> <artifactId>hudson-plugin-parent</artifactId> 
 		<version>2.1.0</version> <relativePath>../pom.xml</relativePath> </parent -->
 
-	<artifactId>jenkins-multijob-plugin</artifactId>
-	<version>1.8</version>
-	<name>Jenkins Multijob plugin</name>
+	<groupId>org.hudsonci.plugins</groupId>
+  <artifactId>jenkins-multijob-plugin</artifactId>
+	<version>1.8-h-2-SNAPSHOT</version>
+	<name>Hudson Multijob plugin</name>
 	<description>Enabling full hierarchy of Jenkins jobs</description>
-	<url>http://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin</url>
+	<url>http://wiki.hudson-ci.org/display/HUDSON/Multijob+Plugin</url>
 
-	<distributionManagement>
-		<repository>
-			<id>maven.jenkins-ci.org</id>
-			<url>http://maven.jenkins-ci.org/content/repositories/releases/</url>
-		</repository>
-	</distributionManagement>
+	
 
 
 	<developers>
@@ -42,25 +39,25 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com:jenkinsci/tikal-multijob-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:jenkinsci/tikal-multijob-plugin.git</developerConnection>
-		<url>https://github.com/jenkinsci/tikal-multijob-plugin.git</url>
+		<connection>scm:git:git://github.com/hudson3-plugins/jenkins-multijob-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:hudson3-plugins/jenkins-multijob-plugin.git</developerConnection>
+		<url>https://github.com/hudson3-plugins/jenkins-multijob-plugin</url>
 	</scm>
 
 
 	<dependencies>
 		<dependency>
-			<groupId>org.jenkins-ci.main</groupId>
-			<artifactId>jenkins-war</artifactId>
+			<groupId>org.eclipse.hudson</groupId>
+			<artifactId>hudson-war</artifactId>
 			<type>war</type>
-			<version>${project.parent.version}</version>
+			<version>3.0.0</version>
 			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
+			<groupId>org.hudsonci.plugins</groupId>
 			<artifactId>parameterized-trigger</artifactId>
-			<version>2.12</version>
+			<version>2.17-h-1</version>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
@@ -77,7 +74,7 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.jenkins-ci.tools</groupId>
+										<groupId>org.eclipse.hudson.tools</groupId>
 										<artifactId>maven-hpi-plugin</artifactId>
 										<versionRange>[1.74,)</versionRange>
 										<goals>
@@ -140,12 +137,7 @@
 		</pluginManagement>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
-		</repository>
-	</repositories>
+	
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -154,4 +146,14 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<packaging>hpi</packaging>
+<licenses>
+    <license>
+      <name>The MIT license</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <properties>
+    <hudsonTags>misc</hudsonTags>
+  </properties>
 </project>
