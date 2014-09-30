@@ -56,7 +56,6 @@ public class PhaseWrapper extends AbstractWrapper {
 	// }
 
 	public BallColor getIconColor() {
-		Result result = null;
 		AbstractBuild worseBuild = null;
 		for (BuildState buildState : childrenBuildState) {
 			AbstractProject project = (AbstractProject) Hudson.getInstance()
@@ -64,11 +63,14 @@ public class PhaseWrapper extends AbstractWrapper {
 			AbstractBuild build = (AbstractBuild) project
 					.getBuildByNumber(buildState.getLastBuildNumber());
 			if (build != null) {
-				if (result == null) {
-					result = build.getResult();
-					worseBuild = build;
+                // Ensure worseBuild is never assigned a build with a null result.
+				if (worseBuild == null) {
+                    if (worseBuild.getResult() != null) {
+                        worseBuild = build;
+                    }
 				} else {
-					if (build.getResult().isWorseThan(worseBuild.getResult())) {
+                    Result buildResult = build.getResult();
+					if (buildResult != null && buildResult.isWorseThan(worseBuild.getResult())) {
 						worseBuild = build;
 					}
 				}
