@@ -65,7 +65,7 @@ public class PhaseWrapper extends AbstractWrapper {
 			if (build != null) {
                 // Ensure worseBuild is never assigned a build with a null result.
 				if (worseBuild == null) {
-                    if (worseBuild.getResult() != null) {
+                    if (build.getResult() != null) {
                         worseBuild = build;
                     }
 				} else {
